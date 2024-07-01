@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlflow-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mlflow-dashboard
+  template:
+    metadata:
+      labels:
+        app: mlflow-dashboard
+    spec:
+      containers:
+        - envFrom:
+            - secretRef:
+                name: mlflow-env-variables
+          image: jedha/sample-mlflow-server
+          name: mlflow-server
+          ports:
+            - containerPort: 8080

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlflow-deployment
+spec:
+  selector:
+    matchLabels:
+      app: mlflow-dashboard
+  replicas: 4 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: mlflow-dashboard
+    spec:
+      containers:
+        - name: mlflow-server
+          image: jedha/sample-mlflow-server
+          env:
+            - name: PORT
+              value: "8080"
+            - name: BACKEND_STORE_URI
+              value: postgresql://postgres:mysecretpassword@host.docker.internal:5432/postgres # Replace with your creds
+            - name: ARTIFACT_ROOT
+              value: artifacts # Replace with your creds
+            - name: AWS_ACCESS_KEY_ID
+              value: ************** # Replace with your creds
+            - name: AWS_SECRET_ACCESS_KEY
+              value: ******************** # Replace with your creds
+          ports:
+            - containerPort: 8080

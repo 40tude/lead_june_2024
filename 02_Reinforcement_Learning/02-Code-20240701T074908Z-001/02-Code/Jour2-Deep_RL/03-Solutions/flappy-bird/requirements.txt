@@ -1,0 +1,4 @@
+ray[rllib]==2.0.1
+tensorflow
+pygame
+flappy-bird-gym

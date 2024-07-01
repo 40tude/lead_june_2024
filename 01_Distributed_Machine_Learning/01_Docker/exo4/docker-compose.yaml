@@ -1,0 +1,35 @@
+# version: "3.9"        # now version is obsolete
+
+services:
+  nocodb:
+    container_name: nocodb
+    image: nocodb/nocodb:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    restart: always
+    volumes:
+      - nocodedb_volume:/usr/app/data
+    # see secrets.ps1
+    environment:
+      - NC_DB=pg://postgres:5432?u=${DB_USER}&p=${DB_PASSWORD}&d=${DB_NAME}
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    # see secrets.ps1
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data:rw
+
+volumes:  
+  postgres_volume:
+    external: true
+  nocodedb_volume:
+    external: true

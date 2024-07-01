@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlflow--deployment
+spec:
+  selector:
+    matchLabels:
+      app: mlflow--dashboard
+  replicas: 4                              # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: mlflow--dashboard
+    spec:
+      containers:
+        - name: mlflow--server
+          image: jedha/sample-mlflow-server
+          envFrom:
+            - secretRef:
+                name: mlflow-env-variables    # see secrets.yaml

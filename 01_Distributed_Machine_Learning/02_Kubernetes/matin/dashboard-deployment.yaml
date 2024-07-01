@@ -1,0 +1,32 @@
+apiVersion: apps/v1 # Defines the version of the K8 API we are going to use
+kind: Deployment # Defines the resource used
+metadata:
+  name: dashboard-deployment # Defines a name for that resource
+
+## Defines a name to map it to other resources ##
+# spec du déploiement
+spec:
+  selector:
+    matchLabels:
+      app: streamlit-dashboard
+  replicas: 2 # Tells deployment to run 2 pods matching the template
+
+  # Template de POD
+  template:
+    metadata:
+      labels:
+        app: streamlit-dashboard # Name of each pod (an id will be added next to it)
+    # spec du pod
+    spec:
+      # Y aura 1 (ou plusieurs containers dans le POD)
+
+      containers:
+        # Instructions pour créer les containers qui sera dans le pod  
+        # C'est un contexte Docker. On retrouve nos petits normalement
+        - name: streamlit-demo # Name of each container within the pod
+          image: jedha/streamlit-demo-for-k8s # Path of the image registry
+          env: # Defines Environment variables
+            - name: PORT
+              value: "8080"
+          ports:
+            - containerPort: 8080 # Define port mapping

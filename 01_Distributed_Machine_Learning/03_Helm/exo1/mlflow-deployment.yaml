@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlflow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mlflow
+  template:
+    metadata:
+      labels:
+        app: mlflow
+    spec:
+      containers:
+      - name: mlflow
+        image: jedha/sample-mlflow-server
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - configMapRef:
+            name: mlflow-config
+        args: ["server", "--backend-store-uri", "postgresql://philippe:philippepassword@my-postgresql.default.svc.cluster.local:5432/mlflow", "--default-artifact-root", "s3://demo-lead-bucket/artifacts"]

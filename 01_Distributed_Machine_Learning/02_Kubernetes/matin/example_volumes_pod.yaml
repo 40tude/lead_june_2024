@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod # This is a Pod resource. Using a Deployment Resource would have been an overkill
+metadata:
+  name: test-volumes
+spec:
+  containers:
+    - name: alpine
+      image: alpine # This is an official lightweight Linux distribution
+      volumeMounts:
+        - name: data # Name of the volume
+          mountPath: /data # Path where the volume will be mounted inside the pod
+
+      ## Below, we are simply telling our pod to run a very simple infinite loop so that we will be able to access the pod later on
+      command: ["/bin/sh", "-c"]
+      args:
+        - while true; do
+          echo "I'm working";
+          sleep 1;
+          done
+        ##
+
+  ## Here we create the volume that we will name "data" inside the node
+  volumes:
+    - name: data
+      hostPath:
+        path: /data
+        type: DirectoryOrCreate

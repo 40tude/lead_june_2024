@@ -1,0 +1,7 @@
+ray[rllib]
+tensorflow
+gym[atari] 
+gym[accept-rom-license]
+gym[toy_text]
+atari_py
+pyglet

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mlflow--services
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: mlflow--dashboard
+  type: ClusterIP
+
+  # ClusterIP: Accès interne uniquement, communication entre services au sein du cluster.
+  # NodePort: Accès externe, expose l'application sur un port de chaque nœud du cluster.
+
