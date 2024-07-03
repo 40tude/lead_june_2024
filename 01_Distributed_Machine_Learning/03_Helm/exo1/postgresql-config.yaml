@@ -1,0 +1,9 @@
+global:
+  postgresql:
+    auth:
+      username: "phil"
+      password: "phil-password"
+      database: "phil-db"
+    service:
+      ports:
+        postgresql: "5432"
