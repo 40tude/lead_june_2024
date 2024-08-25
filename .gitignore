@@ -3,6 +3,8 @@ secrets.sh
 secrets.yaml
 secrets.py
 
+python.config
+
 cards/
 temp/
 
