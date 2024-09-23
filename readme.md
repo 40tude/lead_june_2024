@@ -1,11 +1,13 @@
 # Notes and projects source code from my "Data Science & Engineering - Lead" training at JEDHA
 
+
 * JEDHA Bootcamp's **Lead** training course leads to official professional certification ([RNCP 38_777](https://www.francecompetences.fr/recherche/rncp/38777/)): “Artificial intelligence architect”.
 * The **Lead** training comes after the **Fullstack** training (JEDHA)
     * My Notes and Projects of the **Fullstack** training are available [here](https://github.com/40tude/fullstack_mars_2024_3) 
 * 3 weeks
 * june 24 - july 12 2024
 * JEDHA Bootcamp's **Lead** training [web page](https://en.jedha.co/formations/formation-data-engineer)
+
 
 ## Main topics & projects
 * Distributed Machine Learning 
